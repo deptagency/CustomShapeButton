@@ -1,5 +1,6 @@
 package com.example.customshapebutton
 
+import android.content.res.Resources.getSystem
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.customshapebutton.ui.theme.CustomShapeButtonTheme
@@ -32,6 +34,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private val Dp.float: Float get() = this.value * getSystem().displayMetrics.density
+
 @Composable
 fun Content() {
     Box(
@@ -42,7 +46,7 @@ fun Content() {
         Button(
             onClick = { },
             modifier = Modifier.size(width = 40.dp, height = 30.dp),
-            shape = TriangleShape(),
+            shape = TriangleShape(4.dp.float),
             contentPadding = PaddingValues(4.dp),
             elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = 6.dp)
         ) {
